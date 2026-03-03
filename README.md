@@ -36,6 +36,7 @@ Production-ready AI system for automated gratification case classification, buil
 | `qdrant`  | Qdrant vector store                             | 6333  |
 | `mlflow`  | MLflow tracking + model registry               | 5000  |
 | `minio`   | S3-compatible artifact store                    | 9000  |
+| `frontend`| Next.js web UI                                  | 3000  |
 
 ## Project Structure
 
@@ -47,7 +48,8 @@ Production-ready AI system for automated gratification case classification, buil
 │   │   └── records/            # Records app (models, views, tasks)
 │   ├── ai_service/             # FastAPI inference service
 │   │   └── routers/            # predict, model_info, cases, health
-│   └── trainer/                # Fine-tuning pipeline
+│   ├── trainer/                # Fine-tuning pipeline
+│   └── frontend/               # Next.js web UI
 ├── libs/
 │   └── common/                 # Shared logging & settings utilities
 ├── scripts/
@@ -215,8 +217,27 @@ cd apps/web
 uv run celery -A gratifikasi worker -l info
 ```
 
+### Run frontend locally
+
+```bash
+cd apps/frontend
+npm install
+npm run dev
+```
+
+The Next.js UI is available at [http://localhost:3000](http://localhost:3000).
+
+## Tech Stack
+
+- **Django** — REST API, record management, approval workflow
+- **FastAPI** — AI inference service (similarity search + classifier)
+- **Celery + Redis** — Async task queue and scheduled jobs
+- **Qdrant** — Vector store for similarity-based retrieval
+- **IndoBERT** — Fine-tuned Indonesian BERT classifier
+- **MLflow + MinIO** — Model tracking, registry, and artifact storage
+- **PostgreSQL** — Primary database
+- **Next.js** — Web UI (TypeScript, Tailwind CSS)
+
 ## License
 
 MIT
-
-## django and fast api
