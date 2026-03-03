@@ -32,8 +32,8 @@ def run_ai_task(self, record_id: int) -> None:
                 f"{ai_url}/predict",
                 json={
                     "text": record.text,
-                    "top_k": 5,
-                    "similarity_threshold": 0.85,
+                    "top_k": settings.AI_PREDICT_TOP_K,
+                    "similarity_threshold": settings.AI_SIMILARITY_THRESHOLD,
                 },
             )
         resp.raise_for_status()

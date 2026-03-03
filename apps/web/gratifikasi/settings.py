@@ -85,6 +85,8 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 # AI Service
 AI_SERVICE_URL = os.environ.get("AI_SERVICE_URL", "http://localhost:8001")
+AI_SIMILARITY_THRESHOLD = float(os.environ.get("SIMILARITY_THRESHOLD", "0.85"))
+AI_PREDICT_TOP_K = int(os.environ.get("AI_PREDICT_TOP_K", "5"))
 
 # Static files
 STATIC_URL = "/static/"

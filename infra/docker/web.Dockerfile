@@ -5,7 +5,7 @@ WORKDIR /app
 RUN pip install --no-cache-dir uv
 
 COPY pyproject.toml ./
-RUN uv sync --no-dev
+RUN uv pip install --system .
 
 COPY apps/web ./apps/web
 COPY libs ./libs
@@ -15,6 +15,6 @@ ENV PYTHONPATH=/app:/app/apps/web
 
 EXPOSE 8000
 
-CMD ["uv", "run", "gunicorn", "gratifikasi.wsgi:application", \
+CMD ["gunicorn", "gratifikasi.wsgi:application", \
      "--bind", "0.0.0.0:8000", "--workers", "2", "--timeout", "120", \
      "--chdir", "/app/apps/web"]
